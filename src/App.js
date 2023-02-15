@@ -1,79 +1,12 @@
-/* import "./App.css";
-
-function App() {
-  return <div className="App"></div>;
-}
-
-export default App;
- */
-
-/* import React, { useState } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
-import PostList from "./pages/PostList/PostList";
-import PostForm from "./pages/PostForm/PostForm";
-import { useSelector } from "react-redux";
-
-const App = () => {
-  const [showAddForm, setShowAddForm] = useState(false);
-  const [showEditForm, setShowEditForm] = useState(false);
-  const [selectedPost, setSelectedPost] = useState(null);
-
-  const posts = useSelector((state) => state.posts);
-
-  const handleAdd = () => {
-    setSelectedPost(null);
-    setShowAddForm(true);
-  };
-
-  const handleEdit = (post) => {
-    setSelectedPost(post);
-    setShowEditForm(true);
-  };
-
-  const handleClose = () => {
-    setShowAddForm(false);
-    setShowEditForm(false);
-  };
-
-  return (
-    <Container>
-      <Row className="my-3">
-        <Col>
-          <h1>Blog</h1>
-        </Col>
-      </Row>
-      <Row className="my-3">
-        <Col>
-          <Button variant="primary" onClick={handleAdd}>
-            Add post
-          </Button>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <PostList posts={posts} handleEdit={handleEdit} />
-        </Col>
-      </Row>
-
-      {showAddForm && <PostForm handleClose={handleClose} />}
-      {showEditForm && (
-        <PostForm post={selectedPost} handleClose={handleClose} />
-      )}
-    </Container>
-  );
-};
-
-export default App;
- */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./App.css";
-
+import classes from "./App.module.css";
+import { Button } from "bootstrap";
 const App = () => {
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentUser, setCurrentUser] = useState("logout");
+  const [showEdit, setShowEdit] = useState(false)
 
   const loadPosts = async () => {
     const response = await axios.get(
@@ -86,8 +19,12 @@ const App = () => {
     loadPosts();
   }, []);
 
+  const editField = () =>{
+    setShowEdit(prevState => !prevState)
+  }
+
   const addPost = (post) => {
-    setPosts([...posts, post]);
+    setPosts([, post, ...posts]);
   };
 
   const updatePost = (id, updatedPost) => {
@@ -150,42 +87,44 @@ const App = () => {
   };
 
   return (
-    <div className="App">
+    <div>
       {currentUser === "logout" && (
-        <form onSubmit={handleLogin}>
-          <label>
+        <form className={classes.login} onSubmit={handleLogin}>
+          <label className={classes.title}>Welcome</label>
+          <label className={classes.label}>
             Username:
-            <input type="text" name="username" required />
+            <input autoComplete="off" className={classes.input} type="text" name="username" required />
           </label>
-          <label>
+          <label className={classes.label}>
             Password:
-            <input type="password" name="password" required />
+            <input autoComplete="off" className={classes.input} type="password" name="password" required />
           </label>
-          <button type="submit">Login</button>
+          <button type="submit" className={classes.button} >Login</button>
         </form>
       )}
       {(currentUser === "admin" || currentUser === "user") && (
-        <div>
-          <button onClick={handleLogout}>Logout</button>
-          <h2>Add a new post</h2>
+        <div className={classes.Position}>
+          <button className={`${classes.close} ${classes.logoutButton}`} onClick={handleLogout}>Logout</button>
           {currentUser === "admin" && (
-            <form onSubmit={handleAddPost}>
-              <label>
+            
+            <form className={classes.addPost} onSubmit={handleAddPost}>
+               <h2 className={classes.titlePost}>Add a new post</h2>
+              <label className={classes.label}>
                 Title:
-                <input type="text" name="title" required />
+                <input className={classes.input} type="text" name="title" required />
               </label>
-              <label>
+              <label className={classes.label}>
                 Body:
-                <textarea name="body" required />
+                <input className={classes.input}  name="body" required />
               </label>
-              <button type="submit">Add post</button>
+              <button className={classes.button} type="submit">Add post</button>
             </form>
           )}
           <table>
             <thead>
               <tr>
                 <th>Title</th>
-                <th>Actions</th>
+                { currentUser === "admin" &&<th>Actions</th>}
               </tr>
             </thead>
             <tbody>
@@ -194,12 +133,12 @@ const App = () => {
                   <td>{post.title}</td>
                   {currentUser === "admin" && (
                     <td>
-                      <button onClick={() => handleDeletePost(post.id)}>
+                      <button className={classes.close} onClick={() => handleDeletePost(post.id)}>
                         Delete
                       </button>
-                      <details>
-                        <summary>Edit</summary>
-                        <form onSubmit={handleUpdatePost}>
+                      
+                        <button className={classes.button}  onClick={editField}>Edit</button>
+                        { showEdit && <form onSubmit={handleUpdatePost}>
                           <input type="hidden" name="id" value={post.id} />
                           <label>
                             Title:
@@ -220,7 +159,7 @@ const App = () => {
                           </label>
                           <button type="submit">Update post</button>
                         </form>
-                      </details>
+                    }
                     </td>
                   )}
                 </tr>

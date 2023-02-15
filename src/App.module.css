@@ -1,0 +1,110 @@
+.App{
+ height: 100vh;
+ width: 100vw;
+ font-family: 'Poppins', sans-serif;
+ background: beige;
+}
+.login{
+ display: flex;
+ flex-direction: column;
+ width: 20rem;
+ margin-left: auto;
+ margin-right: auto;
+ margin-top: 12rem;
+ background-color: white;
+ text-align: center;
+ border-radius: 0.42rem;
+ box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+}
+.title {
+  margin: 50px 0 30px 0;
+  color: #333;
+  font-size: 2.9rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.titlePost{
+      margin: 50px 0 30px 0;
+  color: #333;
+  font-size: 2rem;
+  font-family: 'Poppins', sans-serif;
+}
+.label {
+  font-size: 1.1rem;
+  margin: 0;
+  margin-bottom: 5px;
+}
+.input {
+ height: 1.5rem;
+ font-size: 1rem;
+ margin-bottom: 5px;
+ border: 1px solid #b1b3b9;
+ border-radius: 0.42rem;
+ -webkit-box-shadow: none;
+ box-shadow: none;
+ width: 15rem;
+}
+.input:focus {
+ outline: none;
+}
+.button {
+ font: inherit;
+ border: 1px solid #14213d;
+ background: #14213d;
+ color: white;
+ padding: 0.25rem 1rem;
+ cursor: pointer;
+ font-family: "Poppins", sans-serif;
+ border-radius: 0.42rem;
+ transition: 300ms;
+ margin-top: 1rem;
+ width: 150px;
+ margin-left: auto;
+ margin-right: auto;
+ margin-bottom: 25px;
+}
+
+.button:hover,
+.button:active {
+ background: #2f3e5e;
+ border-color: #2f3e5e;
+ transition: 300ms;
+ transform: scale(1.05);
+}
+.button:focus {
+ outline: none;
+}
+.close {
+  font: inherit;
+  border: 1px solid #e94d4d;
+  background: #e94d4d;
+  color: white;
+  padding: 0.25rem 1rem;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  border-radius: 0.42rem;
+  transition: 300ms;
+}
+
+.close:hover,
+.close:active {
+  background: #f18686;
+  border-color: #f18686;
+  transition: 300ms;
+  transform: scale(1.05);
+}
+
+.close:focus {
+  outline: none;
+}
+.Position{
+justify-content: center;
+text-align: center;
+}
+.logoutButton{
+    margin-top: 1rem;
+}
+.addPost{
+    display: flex;
+    flex-direction: column;
+}
