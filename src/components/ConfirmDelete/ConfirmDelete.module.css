@@ -1,0 +1,119 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+  backdrop-filter: blur(3px);
+}
+
+.modal {
+  position: fixed;
+  top: 20vh;
+  left: 10%;
+  width: 80%;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.header {
+  background: #14213d;
+  padding: 1rem;
+}
+
+.header h2 {
+  margin: 0;
+  color: white;
+}
+
+.content {
+  padding: 1rem;
+}
+
+.actions {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 0.42rem;
+}
+
+.button {
+  font: inherit;
+  border: 1px solid #14213d;
+  background: #14213d;
+  color: white;
+  padding: 0.25rem 1rem;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  border-radius: 0.42rem;
+  transition: 300ms;
+  margin-right: 10px;
+}
+
+.button:hover,
+.button:active {
+  background: #2f3e5e;
+  border-color: #2f3e5e;
+  transition: 300ms;
+  transform: scale(1.05);
+}
+
+.button:focus {
+  outline: none;
+}
+
+.close {
+  font: inherit;
+  border: 1px solid #e94d4d;
+  background: #e94d4d;
+  color: white;
+  padding: 0.25rem 1rem;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  border-radius: 0.42rem;
+  transition: 300ms;
+}
+
+.close:hover,
+.close:active {
+  background: #f18686;
+  border-color: #f18686;
+  transition: 300ms;
+  transform: scale(1.05);
+}
+
+.close:focus {
+  outline: none;
+}
+
+.modalWrapper {
+  text-align: left;
+}
+.smallWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.label {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    left: calc(50% - 20rem);
+    width: 40rem;
+  }
+}
+
+.border {
+  border-color: #f18686;
+}
